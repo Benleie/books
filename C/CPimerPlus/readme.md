@@ -16,6 +16,12 @@ unix和C：\n;   MS-DOS:\r\n,结束用CTRL+Z
 + 13.1GG,VS怎样输入参数？
 用rb格式读入books.md，一个换行符算两个字符。r模式算一个.
 
++ pointer fp points to a data object.
+getchar() == getc(stdin)
+EOF检测是否到了文件尾.选择一个int类型的数与之比较。
+fclose如果失败,会返回EOF.
+
+
 
 
 ##17
