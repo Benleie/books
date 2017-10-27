@@ -6,14 +6,14 @@
 
 ##13file
 + 文件格式：文本格式，二进制格式。
-bianry mode读取文件的每一个字节；文本文件在换行符的表示上，不同系统有较大差异
+binary mode读取文件的每一个字节；文本文件在换行符的表示上，不同系统有较大差异
 unix和C：\n;   MS-DOS:\r\n,结束用CTRL+Z
 \r回车符，\n换行符。
 
 + standard I/O  输入输出是buffered. generally 512bytes.  
 对应复杂的low-level I/O，read()和write(),直接调用系统API
 
-+ 13.1GG,VS怎样输入参数？
++ 13.1 GG,VS怎样输入参数？
 用rb格式读入books.md，一个换行符算两个字符。r模式算一个.
 
 + pointer fp points to a data object.
@@ -21,8 +21,24 @@ getchar() == getc(stdin)
 EOF检测是否到了文件尾.选择一个int类型的数与之比较。
 fclose如果失败,会返回EOF.
 
++ rewind
+文件内部的位置指针会随着读写不断后移。
+
+#### 04reverse.c
+`int fseek(FILE *stream, long offset, int fromwhere);`
+ftell一般用于读取文件的长度,返回的是当前文件指针指向的位置。
 
 
+## 11
+#### 11.7
+如果输入字符串足够短，puts()在字符串后面添加\n\0,会产生一个空行.
+fputs()不会。
+
+#### 11.8
+fgets()返回正在读取的字符串地址，读到EOF就返回NULL或0
+
+#### 11.9 用fgets()实现超出部分的截取
+null character即"\0",C字符串的结束标志
 
 ##17
 ### 17.2一跑就崩就重新启动？程序结束那部分有问题
