@@ -21,6 +21,7 @@ getchar() == getc(stdin)
 EOF检测是否到了文件尾.选择一个int类型的数与之比较。
 fclose如果失败,会返回EOF.
 
+fgets(buf, STLEN, fp);
 + rewind
 文件内部的位置指针会随着读写不断后移。
 
@@ -28,6 +29,12 @@ fclose如果失败,会返回EOF.
 `int fseek(FILE *stream, long offset, int fromwhere);`
 ftell一般用于读取文件的长度,返回的是当前文件指针指向的位置。
 
+#### how standard i/o work
++ stdin , stdout , and stderr files are opened automatically.
++ fopen打开文件流，针对读写各自创建一个buffer，并创建包含该buffer和文件的数据结构，再返回该数据结构的指针。
+
+
++ `int fflush(FILE *fp)`;将缓冲区的内容移入fp指向的文件流。fp若是null pointer,则刷新缓冲区。
 
 ## 11
 #### 11.7
@@ -39,6 +46,9 @@ fgets()返回正在读取的字符串地址，读到EOF就返回NULL或0
 
 #### 11.9 用fgets()实现超出部分的截取
 null character即"\0",C字符串的结束标志
+
+
+
 
 ##17
 ### 17.2一跑就崩就重新启动？程序结束那部分有问题
