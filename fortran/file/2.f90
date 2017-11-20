@@ -1,3 +1,23 @@
+parameter (n=3)
+dimension name(n),s(n)
+character name *10
+open(1,file="stu4.md",form="formatted",access="direct",recl=12)
+do i=1,n
+    read(1,20,rec=i) name(i),s(i)
+enddo
+20 format(a7,f5.1)
+close(1)
+
+open(2,file="stu5.md",form="formatted",access="direct",recl=12)
+do i=1,n
+    if(s(i) >= 60) write(2,20,rec=i) name(i), s(i)
+    enddo
+    read*
+close(2)
+end 
+
+
+
 !写入数组
 program p
 	parameter (n=3)
