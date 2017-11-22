@@ -39,6 +39,8 @@ HTMLCollection.namedItem()获取name属性的值。也可以用bracket notation
 注意Document和HTMLDocument的区别  getElementsByName()
 
 
++ DOM一致性检测
+document.implementation.hasFeature("","")  永远返回true吗？
 
 
 
@@ -48,5 +50,3 @@ HTMLCollection.namedItem()获取name属性的值。也可以用bracket notation
 
 
 
-The  document object, as an instance of  HTMLDocument, has several additional properties that
-standard  Document objects do not have. 
