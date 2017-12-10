@@ -6,7 +6,69 @@
 	<link rel="stylesheet" type="text/css" href="style1_5.css">
 </head>
 <body>
-	<p>借鉴JailBreak的<a target="_blank" href="http://static.vgee.cn/static/index.html">flex学习</a>。</p>
-	
+	<h6>借鉴JailBreak的<a target="_blank" href="http://static.vgee.cn/static/index.html">flex学习</a>。</h6>
+	<p>border="3" cellspacing="5" rules="all"</p>
+	<div id="table1">
+		<p>
+			#table1 > table tr > th {
+	font-size: 40px;
+	color: wheat;
+	vertical-align: bottom;
+	border-bottom: 2px solid #dddddd;
+}
+		</p>
+
+		<table border="3" cellspacing="5" rules="all" >
+			<tr>
+				<th>name</th>
+				<th>points</th>
+				<th>board</th>
+				<th>assist</th>
+			</tr>
+			<tr>
+				<td>james</td>
+				<td>30</td>
+				<td>9</td>
+				<td>8</td>
+			</tr>
+			<tr>
+				<td>harden</td>
+				<td>33</td>
+				<td>8</td>
+				<td>9</td>
+			</tr>
+		</table>
+	</div>
+	<div id="table2">
+		<p>
+			#table2 > table > tr  > th {
+	font-size: 40px;
+	color: wheat;
+	vertical-align: bottom;
+	border-bottom: 2px solid #dddddd;
+}
+		</p>
+		<h6>所以说很奇怪，子选择器出了未知问题</h6>
+		<table border="3" cellspacing="5" rules="all" >
+			<tr>
+				<th>name</th>
+				<th>points</th>
+				<th>board</th>
+				<th>assist</th>
+			</tr>
+			<tr>
+				<td>james</td>
+				<td>30</td>
+				<td>9</td>
+				<td>8</td>
+			</tr>
+			<tr>
+				<td>harden</td>
+				<td>33</td>
+				<td>8</td>
+				<td>9</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
