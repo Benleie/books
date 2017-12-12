@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>col初探</title>
+	<link rel="stylesheet" type="text/css" href="../../src/bootstrap.css">
+	<style type="text/css">
+		 div{
+			border:1px solid red;
+		}
+		.container {
+			border: 1px solid lime;
+		}
+		.row {
+			border: 0;
+		}
+		/*span {
+			font-size: 1.5em;
+		}*/
+	</style>
+</head>
+<body>
+		
+
+
+
+	<div id="bb" class="jumbotron">
+		
+		
+
+		<!-- https://v3.bootcss.com/css/ -->
+		<h2 class="text-center">官网示例</h2>
+		<div class="container">
+			<h3>移动设备与桌面屏幕</h3>
+			
+
+			<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+			<div class="row">
+			  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+			  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+			  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+			</div>
+
+			<!-- Columns are always 50% wide, on mobile and desktop -->
+			<div class="row">
+			  <div class="col-xs-6">.col-xs-6</div>
+			  <div class="col-xs-6">.col-xs-6</div>
+			</div>
+
+			<h3>响应式列重置</h3>
+			<div class="row">
+			  <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+			  <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+
+			  <!-- Add the extra clearfix for only the required viewport -->
+			  <!-- <div class="clearfix visible-xs-block"></div> -->
+
+			  <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+			  <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+			</div>
+
+
+
+			<h3>多余列将另起一行</h3>
+			<div class="row">
+			  <div class="col-xs-9">.col-xs-9</div>
+			  <div class="col-xs-4">.col-xs-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
+			  <div class="col-xs-6">.col-xs-6<br>Subsequent columns continue along the new line.</div>
+			</div>
+
+			<h3>列偏移</h3>
+			<div class="row">
+			  <div class="col-md-4">.col-md-4</div>
+			  <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
+			</div>
+			<div class="row">
+			  <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+			  <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+			</div>
+			<div class="row">
+			  <div class="col-md-6 col-md-offset-3">.col-md-6 .col-md-offset-3</div>
+			</div>
+
+
+
+
+			<h4>You can also override offsets from lower grid tiers with .col-*-offset-0 classes???</h4>
+			<div class="row">
+			  <div class="col-xs-6 col-sm-4">col-xs-6 col-sm-4</div>
+			  <div class="col-xs-6 col-sm-4">col-xs-6 col-sm-4</div>
+			  <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0">col-xs-6 col-xs-offset-3</div>
+			</div>
+			<h4><span class="h3">列嵌套</span>————添加一个新的 .row 元素和一系列 .col-sm-* 元素到已经存在的 .col-sm-* 元素内</h4>
+			
+			<div class="row">
+			  <div class="col-lg-5">
+			    Level 1: .col-sm-9
+			    <div class="row">
+			      <div class="col-xs-8 col-sm-6">
+			        Level 2: .col-xs-8 .col-sm-6
+			      </div>
+			      <div class="col-xs-4 col-sm-6">
+			        Level 2: .col-xs-4 .col-sm-6
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<div class="row">
+			  <div class="col-sm-9">
+			    Level 1: .col-sm-9
+			    <div class="row">
+			      <div class="col-xs-8 col-sm-6">
+			        Level 2: .col-xs-8 .col-sm-6
+			      </div>
+			      <div class="col-xs-4 col-sm-6">
+			        Level 2: .col-xs-4 .col-sm-6
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+<h3>通过使用 .col-md-push-* 和 .col-md-pull-* 类就可以很容易的改变列（column）的顺序。</h3>
+<div class="row">
+  <div class="col-md-9 col-md-push-3">.col-md-9 .col-md-push-3</div>
+  <div class="col-md-3 col-md-pull-9">.col-md-3 .col-md-pull-9</div>
+</div>
+
+
+
+
+
+		</div>
+	</div>
+
+
+
+
+
+	<h2 class="text-center">container</h2>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-1">.col-lg-1</div>
+				<!--由于这12个div都一样,所以这里省略了其他10个-->
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-8">.col-lg-8</div>
+				<div class="col-lg-4">.col-lg-4</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8">.col-md-8</div>
+				<div class="col-md-4">.col-md-4</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4">.col-lg-4</div>
+				<div class="col-lg-4">.col-lg-4</div>
+				<div class="col-lg-4">.col-lg-4</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">.col-sm-6</div>
+				<div class="col-sm-6">.col-sm-6</div>
+			</div>
+		</div>
+
+	<h3 class="text-center">container-fluid</h3>
+		<div class=" container-fluid">
+			<div class="row">
+				<div class="col-lg-1">.col-lg-1</div>
+				<!-- 由于这12个div都一样,所以这里省略了其他10个 -->
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+				<div class="col-lg-1">.col-lg-1</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-8">.col-lg-8</div>
+				<div class="col-lg-4">.col-lg-4</div>
+				</div>
+			<div class="row">
+				<div class="col-lg-4">.col-lg-4</div>
+				<div class="col-lg-4">.col-lg-4</div>
+				<div class="col-lg-4">.col-lg-4</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6">.col-lg-6</div>
+				<div class="col-lg-6">.col-lg-6</div>
+			</div>
+		</div>
+	
+		
+	
+</body>
+</html>
