@@ -40,8 +40,8 @@ HTMLCollection.namedItem()获取name属性的值。也可以用bracket notation
 
 
 + DOM一致性检测
-document.implementation.hasFeature("","")  永远返回true吗？
-
+document.implementation.hasFeature("","")  
+in chrome永远返回true obsolete Deprecated
 
 
 
