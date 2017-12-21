@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Attributes example</title>
+</head>
+
+<body>
+    <div id="myDiv">nodeName and tagName</div>
+    <div id="2" hhhh="hahaha">hhhh</div>
+    <p id="paragraph" style="color: green;">Sample Paragraph</p>
+    <form action="">
+        <p>
+            <input type="button" value="Show first attribute name and value" onclick="listAttributes();">
+            <input id="result" type="text" value="" style="width:400px;">
+        </p>
+    </form>
+    <script type="text/javascript">
+    var div = document.getElementById('myDiv')
+    console.log(div.nodeName === div.tagName)
+    console.log(div.nodeName) //DIV
+    console.log(document.getElementById('2').getAttribute("hhhh")) //hahaha
+
+
+    function listAttributes() {
+        var paragraph = document.getElementById("paragraph");
+        var result = document.getElementById("result");
+
+        // First, let's verify that the paragraph has some attributes    
+        if (paragraph.hasAttributes()) {
+            var attrs = paragraph.attributes;
+            var output = "";
+            for (var i = attrs.length - 1; i >= 0; i--) {
+                output += attrs[i].name + "->" + attrs[i].value;
+            }
+            result.value = output;
+        } else {
+            result.value = "No attributes to show";
+        }
+    }
+    </script>
+</body>
+
+</html>
