@@ -1,3 +1,5 @@
++ element几乎没有onclick这类event handlers??----->HTMLElement
+
 ## getAttributes/setAttributes
 + All attributes on an element are also accessible as properties of the DOM element object itself.
 + 例外：style,	event-handlers

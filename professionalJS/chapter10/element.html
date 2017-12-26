@@ -1,3 +1,6 @@
+<!-- 
+     17.12.26
+ -->
 <!DOCTYPE html>
 <html>
 
@@ -15,29 +18,54 @@
             <input id="result" type="text" value="" style="width:400px;">
         </p>
     </form>
+
+
+    <div class="style"  style="font-weight:bold;">
+        <p style="color:red" id="day26">..MDN HTMLElement-style..</p>
+    </div>
     <script type="text/javascript">
-    var div = document.getElementById('myDiv')
-    console.log(div.nodeName === div.tagName)
-    console.log(div.nodeName) //DIV
-    console.log(document.getElementById('2').getAttribute("hhhh")) //hahaha
+
+        var div = document.getElementById('myDiv')
+        console.log(div.nodeName === div.tagName)
+        console.log(div.nodeName) //DIV
+        console.log(document.getElementById('2').getAttribute("hhhh")) //hahaha
 
 
-    function listAttributes() {
-        var paragraph = document.getElementById("paragraph");
-        var result = document.getElementById("result");
+        function listAttributes() {
+            var paragraph = document.getElementById("paragraph");
+            var result = document.getElementById("result");
 
-        // First, let's verify that the paragraph has some attributes    
-        if (paragraph.hasAttributes()) {
-            var attrs = paragraph.attributes;
-            var output = "";
-            for (var i = attrs.length - 1; i >= 0; i--) {
-                output += attrs[i].name + "->" + attrs[i].value;
+            // First, let's verify that the paragraph has some attributes    
+            if (paragraph.hasAttributes()) {
+                var attrs = paragraph.attributes;
+                var output = "";
+                for (var i = attrs.length - 1; i >= 0; i--) {
+                    output += attrs[i].name + "->" + attrs[i].value;
+                }
+                result.value = output;
+            } else {
+                result.value = "No attributes to show";
             }
-            result.value = output;
-        } else {
-            result.value = "No attributes to show";
         }
-    }
+
+
+        var element = document.getElementById("day26");
+        var out = "",
+            outAll = "",
+            elementStyle = element.style;
+        var computedStyle = window.getComputedStyle(element, null);
+
+        for (prop in elementStyle) {
+          if (elementStyle.hasOwnProperty(prop)) {
+            out += "  " + prop + " = '" + elementStyle[prop] + "' > '" + computedStyle[prop] + "'\n";
+          }
+        }
+        //console.log(out)
+        for(prop in element)
+            outAll += "  " + prop + "=" + element[prop] + "\n";
+        console.log(outAll)
+
+
     </script>
 </body>
 
