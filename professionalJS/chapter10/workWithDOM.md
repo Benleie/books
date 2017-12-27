@@ -16,7 +16,7 @@ JavaScript code being executed.
 JavaScript, with  NodeList objects being particularly troublesome. 
 + it is best to minimize the number of DOM manipulations
 
-+ 因为DOM解析器和JS引擎是浏览器的两部分，它们的通信和同步非常复杂，因为频繁的DOM操作会严重影响网页性能。目前好的解决方案是像react,vue那样创建虚拟DOM,是日常的DOM操作积攒起来，然后统一去操作。
++ 因为DOM解析器和JS引擎是浏览器的两部分，它们的通信和同步非常复杂，因为频繁的DOM操作会严重影响网页性能。目前好的解决方案是像react,vue那样创建一个虚拟DOM,即一个JS对象，将日常的DOM操作保存，然后统一和真实DOM比较差异，渲染。
 
 
 
