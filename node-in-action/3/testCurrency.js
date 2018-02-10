@@ -1,0 +1,6 @@
+// var currency = require('./currency')
+var currency = require('dollar')
+// console.log(currency)
+// console.log(module)
+console.log('50 canadian dollars equals: ' + currency.canadianToUs(50))
+console.log('30 US dollars equals: ' + currency.USToCanadian(30))

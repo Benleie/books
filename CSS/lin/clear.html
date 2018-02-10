@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>clear float</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.float_left {
+			float: left;
+			width: 200px;
+			height: 100px;
+			border: 2px solid #f00;
+		}
+		.float_right {
+			float: right;
+			width: 200px;
+			height: 100px;
+			border: 2px solid #00f;
+		}
+		.float_box {
+			/*display: table;*/
+			/*overflow: hidden;*/
+			background-color: #aaa;
+			/*zoom:1;*/
+		}
+		.no_float {
+			/*clear: both;*/
+			color: #fff;
+			background-color: #000;
+			
+		}
+		.clearfix:after {
+			clear: both;
+			display: block;
+			/*visibility: hidden;*/
+			/*height: 0;*/
+			/*line-height: 0;*/
+			content: "";
+		}
+		/*
+		.clearfix:before,
+		.clearfix:after {
+		  content: ".";
+		  display: block;
+		  height: 0;
+		  visibility: hidden;
+		}
+		.clearfix:after {clear: both;}
+		.clearfix {zoom: 1;} 
+		*/
+	</style>
+</head>
+<body>
+	<div class="float_box clearfix">
+		<div class="float_left">float_left</div>
+		<div class="float_right">float_right</div>
+		<!-- <br clear="all"> -->
+	</div>
+
+	<div class="no_float">no_float</div>
+</body>
+</html>

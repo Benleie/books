@@ -7,7 +7,8 @@
 
 ## attributes
 +  NamedNodeMap   Attr  name,value
-+ There is really not a good reason to access attribute nodes directly. The  getAttribute() ,  setAttribute() , and  removeAttribute() methods are preferable over manipulating attribute nodes.
++ There is really not a good reason to access attribute nodes directly. 
+The  getAttribute(), setAttribute(), and removeAttribute() methods are preferable over manipulating attribute nodes.
 
 
 + createElement()

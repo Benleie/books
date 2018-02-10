@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>selector</title>
+	<style>
+		p + strong {
+			color: red;
+		}
+		strong + strong + strong {
+			color: blue;
+		}
+		div {
+			float: right;
+			/*margin: 0 auto;*/
+			margin-right: 200px;
+			width: 400px;
+			background: wheat;
+		}
+	</style>
+</head>
+<body>
+	<p>you can see me now <strong>and i'm </strong>visible</p>
+	<strong>strong1</strong>
+	<strong>strong2</strong>
+	<!-- <p>yes it;s me</p> -->
+	<strong>strong3</strong>
+	<strong>strong4</strong>
+	<strong>strong5</strong>
+	<div>center--float-right</div>
+</body>
+</html>
