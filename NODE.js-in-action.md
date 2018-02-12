@@ -9,3 +9,4 @@ index.js或者package.json的main
 
 + 事件触发响应逻辑  回调和事件监听
 + 创建中间函数，减少回调嵌套；用return代替if/else
++ 继承Event.Emitter() emit on 反复调用
