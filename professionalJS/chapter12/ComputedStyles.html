@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>computed Styles Examples</title>
+	<style>
+		#myDiv {
+			background-color: blue;
+			width: 300px;
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div id="myDiv" 
+	style="background-color: red;  border:1px solid black">
+	background
+	</div>
+
+	<script type="text/javascript">
+		var myDiv = document.getElementById('myDiv');
+		var computedStyle = document.defaultView.getComputedStyle(myDiv, null);
+		console.log(computedStyle.backgroundColor)
+		console.log(computedStyle.width)
+		console.log(computedStyle.position)
+	</script>
+</body>
+</html>
+
+
