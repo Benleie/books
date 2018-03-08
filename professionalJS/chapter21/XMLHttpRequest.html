@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>XHR</title>
+</head>
+<body>
+	
+	<script type="text/javascript">
+		
+		var xhr = new XMLHttpRequest();
+		console.log('UNSENT', xhr.readyState);
+
+		var url1 = 'hard.txt',
+			url2 = 'https://www.baidu.com',
+			url3 = 'http://localhost:3000/xhr.html'
+		xhr.open('post', url3, true);
+		//xhr.setRequestHeader('Access-Control-Request-Headers','Access-Control-Allow-Origin');
+		//xhr.setRequestHeader('Access-Control-Allow-Origin','*')
+		// xhr.setRequestHeader('Content-Type', 'application/xml');
+		console.log('OPENED',xhr.readyState)
+		xhr.onprogress = function () {
+		  console.log('LOADING', xhr.readyState);
+		};
+
+		xhr.onload = function () {
+		  console.log('DONE', xhr.readyState);
+		};
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === XMLHttpRequest.HEADERS_RECEIVED){
+				// console.log("HEADERS_RECEIVED", xhr.readyState)
+				// console.log(xhr.getResponseHeader("server"))
+				console.log(xhr.getAllResponseHeaders())
+			}
+		}
+		xhr.send('string');
+		//Content-Type
+	</script>
+</body>
+</html>
