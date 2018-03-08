@@ -11,3 +11,9 @@ Arrays: Objects and arrays are typically top-level parts of a JSON data structur
 
 
 ## The JSON Object
+ eval() could parse, interpret, and return the data as JavaScript objects and arrays. 
+
++ JSON.stringify()  serialize JavaScript objects into a JSON string
+By default, without any extra white space or indentation
+
++ JSON.parse() parse JSON into a native JavaScript value 
