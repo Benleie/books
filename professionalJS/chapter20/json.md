@@ -17,3 +17,27 @@ Arrays: Objects and arrays are typically top-level parts of a JSON data structur
 By default, without any extra white space or indentation
 
 + JSON.parse() parse JSON into a native JavaScript value 
+
+
+## Serialization Options
+JSON.stringify(value[, replacer [, space]])
+
+`undefined、任意的函数以及symbol值，在序列化过程中会被忽略（出现在非数组对象的属性值中时）或者被转换成 null（出现在数组中时`  ---MDN
+
+#### replacer 
++ returning  undefined will result in the property being omitted from the result.
+
++ filters apply to all objects contained in the object to be serialized 
+
++ 第三个参数可以是字符串或者数字   limits to 10
+
+
+#### toJSON()
++ its name must be "toJSON"
++ 不是对象被序列化，而是调用 toJSON 方法后的返回值会被序列化
++ the order of a serialization process
+
+
+## Parsing Options
+JSON.parse(text[, reviver])
+
