@@ -7,8 +7,17 @@
 <body>
 	<svg width="100%" height="600" version="1.1" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #cd0000;">
 
-		<polygon points="220,100 300,210 170,250 50,50" style="fill:none; stroke:#000000;stroke-width:1"/>
+		<polygon points="220,100  170,250 " style="fill:none; stroke:#000000;stroke-width:1"/>
 
 	</svg>
+
+	<script type="text/javascript">
+		
+		var addPoint = function(point){
+			var poly = document.querySelectorAll('svg polygon')[0],
+			value = poly.getAttribute('points') + ' '+ point;
+			poly.setAttribute("points",value)
+		}
+	</script>
 </body>
 </html>
