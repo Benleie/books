@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Axes</title>
+	<style>
+		.f-svg {
+			background-color: Ivory;
+			margin-left: 50px;
+		}
+		.f-text {
+			font-family: sans-serif;
+			font-size: 14px;
+			fill:red;	
+			display:none;		
+		}
+
+		.Axis path,
+		.Axis line {
+			stroke: teal;
+			shape-rendering: crispEdges;
+		}
+		.Axis text {
+			font-family: Optima, Futura, sans-serif;
+			font-weight: bold;
+			font-size: 14px;
+			fill: teal;
+		}
+
+	</style>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+	<div class="Robb">click me</div>
+	<script type="text/javascript">
+
+		var dataset = [];
+		var updateData = function(){
+			dataset = [];
+			var xRange = Math.random() * 900 + 100,
+				  yRange = Math.random() * 90 + 10;
+
+			for(let i = 0; i < d3.randomUniform(5, 40)(); i++){
+				let litteArray = [];
+				litteArray[0] = d3.randomUniform(0, xRange)() | 0;
+				litteArray[1] = d3.randomUniform(0, yRange)() | 0;
+				dataset.push(litteArray)
+			}
+
+			return dataset;
+		}
+
+		dataset = updateData();
+		
+		
+		const w = 800,
+			  h = 500;
+
+		const svg = d3.select("body")
+			        .append("svg")
+			        .attr("width", w)
+			        .attr("height", h)
+			        .attr("class", "f-svg")
+
+	    var xScale = d3.scaleLinear()
+					   .domain([0, d3.max(dataset, (d) => d[0])])
+					   .range([0.05*w, 0.9*w]);
+
+		var yScale = d3.scaleLinear()
+					   .domain([0, d3.max(dataset, (d) => d[1])])
+					   .range([0.95*h - 3, 0.1*h]);
+
+		var rScale = d3.scaleLinear()
+					   .domain([0, d3.max(dataset, (d) => d[1])])
+					   .range([3,10])
+
+		var xAxis = d3.axisBottom(xScale).ticks(7)
+		// add X axis
+		svg.append("g")
+		   .call(xAxis)
+		   // .call(d3.axisBottom().scale(xScale).ticks(7))
+		   .attr("class", "Axis x")
+		   .attr("transform","translate(0," + (0.95*h - 3)  + ")")
+		      
+
+		var yAxis = d3.axisLeft(yScale).ticks(10);
+
+		svg.append("g").call(yAxis)
+		   .attr("class", "Axis y")
+		   .attr("transform","translate(" + 0.05*w  + ",0)")
+		   	
+
+
+		svg.append("g").selectAll("circle")  //.append("g")
+		   .data(dataset).enter()
+		   .append("circle")
+		   .attr("cx", (d) => xScale(d[0]) )
+		   .attr("cy", (d) => yScale(d[1]) )
+		   .attr("r",  (d) => rScale(d[1]))
+		   .attr("fill",'navy')
+
+
+		d3.select(".Robb").on("click", () => {
+			
+			  	dataset = updateData();
+
+			  	xScale.domain([0, d3.max(dataset, (d) => d[0])])
+			  	yScale.domain([0, d3.max(dataset, (d) => d[1])])
+			  	rScale.domain([0, d3.max(dataset, (d) => d[1])])
+			  	
+			  	// 如何更新坐标轴
+			  	svg.select('.x.Axis').transition().call(xAxis);
+			  	svg.select('.y.Axis').transition().call(yAxis);
+
+			  	var circle = svg.selectAll('circle').data(dataset);
+			  					
+			  	circle.exit().remove();
+
+				circle.enter().append("circle")
+					  .merge(circle)
+					  .attr("fill","navy")
+					  .attr("cx", (d) => xScale(d[0]) )
+		   			  .attr("cy", (d) => yScale(d[1]) )
+		   			  .attr("r",  (d) => rScale(d[1]))
+
+		  })		
+
+		
+
+		
+
+		
+	</script>
+</body>
+</html>

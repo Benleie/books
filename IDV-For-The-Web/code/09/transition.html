@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>transition</title>
+		<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+		<style type="text/css">
+			/* No style rules here yet */
+			svg {
+				margin-top: 10px;
+			}		
+
+			.Axis path,
+			.Axis line {
+				stroke: teal;
+				shape-rendering: crispEdges;
+			}
+			.Axis text {
+				font-family: Optima, Futura, sans-serif;
+				font-weight: bold;
+				font-size: 14px;
+				fill: teal;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="Sansa">click me</div>
+		<div class="Robb"></div>
+		
+		<script type="text/javascript">
+			const w = 750,
+				  h = 250,
+				  topLine = 0.05,
+				  bottomLine = 0.9;
+
+			var dataset = [];
+			var updateData = function(){
+				dataset = [];
+				var maxRange = Math.random() * 6 + 20,     //[20,25]
+					minRange = Math.random() * 3 + 1;      //[1,3]
+				for(let i = 0; i < 20 ; i++)           //[15,22]  Math.floor(Math.random() * 8 + 15)
+					dataset.push(d3.randomUniform(minRange, maxRange)() | 0)          //[1,25]
+
+				return dataset;
+			}
+
+			dataset = updateData();
+			d3.select('.Sansa').text("clickme " + dataset.length);
+
+
+			const xScale1 = d3.scaleBand()
+							.domain(d3.range(dataset.length))
+							.rangeRound([0.05*w, 0.95*w])
+							.paddingInner(0.1);
+
+			const xScale2 = d3.scaleBand()
+							.domain(d3.range(dataset.length))
+							.rangeRound([0.05*w, 0.95*w])
+							.paddingInner(0.3);
+							
+            //why "const" can be changed?
+			const yScale = d3.scaleLinear()
+					   .domain([0, d3.max(dataset)])
+					   .range([bottomLine * h, 0])
+
+			const colorScale = d3.scaleLinear()
+					   .domain([d3.min(dataset), d3.max(dataset)])
+					   .range([0, 255])		   
+			
+
+
+			var svg = d3.select(".Robb")
+						.selectAll("svg")
+						.data(d3.range(2)).enter()    //several SVGs
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h)
+						.attr("display","block")
+	        			.style("background-color","rgb(224,224,224)");
+
+
+	        var svg1 = d3.selectAll('svg').filter(":nth-child(1)"),
+	       		svg2 = d3.selectAll('svg').filter(":nth-child(2)")
+	       	// svg2.style("background-color", "Ivory");
+
+	       	var xAxis, yAxis;
+	       	var CreateAxis = function(svg,xScale){
+	       		//Define X axis
+				xAxis = d3.axisBottom()
+								  .scale(xScale)
+								  .ticks(5);
+
+				//Define Y axis
+				yAxis = d3.axisLeft()
+								  .scale(yScale)
+								  // .ticks(5);
+
+				svg.append("g")
+					.attr("class", "Axis x")
+					.attr("transform", "translate(0," + bottomLine * h + ")")
+					.call(xAxis);
+				
+				svg.append("g")
+					.attr("class", "Axis y")
+					.attr("transform", "translate(" + 0.05*w + ",0)")
+					.call(yAxis);
+	       	}
+
+
+
+	        var CreateHis = function(svg, xScale){
+	       		svg.append("g")	
+	       			   .selectAll("rect")
+					   .data(dataset)
+					   .enter()
+					   .append("rect")
+					   .attr("x", (d, i) => xScale(i))
+					   .attr("y", (d) => yScale(d))
+					   .attr("width", xScale.bandwidth())
+					   .attr("height", (d) => bottomLine * h - yScale(d))
+					   .attr("fill", function(d) {
+							return "rgb(0, 0, " + colorScale(d) + ")";
+					   });
+
+				svg.append("g")
+					   .selectAll("text")
+					   .data(dataset)
+					   .enter()
+					   .append("text")
+					   .text((d) => d)
+					   .attr("text-anchor", "middle")
+					   .attr("x", function(d, i) {
+					   		return xScale(i) + xScale.bandwidth() / 2;
+					   })
+					   .attr("y", function(d) {
+					   		return yScale(d) + 14;
+					   })
+					   .attr("font-family", "sans-serif")
+					   .attr("font-size", "11px")
+					   .attr("fill", "white");
+
+				CreateAxis(svg, xScale);
+	       	}
+
+	       	var updateSVG = function(svg){
+	       		svg.selectAll('rect').data(dataset)
+	       			 .transition()
+	       			 .delay((d,i) => i * 50)
+	       			 // .duration(500)                //animation
+	       		     .attr('y', (d)=> yScale(d) )
+	       		     .attr("height", (d)=> bottomLine * h - yScale(d) )
+	       		     .attr("fill", function(d) {
+							return "rgb(0, 0, " + colorScale(d) + ")";
+					   });
+
+	       		svg.selectAll('text').data(dataset)
+	       		     .transition()
+	       		     .delay((d,i) => i * 50)
+	       		     // .duration(500)               //animation
+	       		     .text((d) => d)
+	       		     .attr('y',(d)=>(yScale(d) + 14));
+
+	       		svg.select('.x.Axis').call(xAxis);
+    			svg.select('.y.Axis').call(yAxis);
+
+	       	}
+	       	
+	       	//after click, update the histogram
+	       	d3.select(".Sansa")
+	       	  .on("click", () =>{
+	       	  		dataset = updateData();
+	       	  		d3.select('.Sansa').text("clickme " + dataset.length);
+	       	  		yScale.domain([0, d3.max(dataset)]);    // update the scale
+
+	       			[svg1, svg2].map(updateSVG)
+	       	  });
+
+	       	//init the histogram
+	       	CreateHis(svg1, xScale1);
+	       	CreateHis(svg2, xScale2);
+
+		</script>
+	</body>
+</html>

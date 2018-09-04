@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>histogram by D3</title>
+    <style>
+	    .bar:hover {
+	        fill: brown;
+	    }
+	    .text {
+	    	font-size: 15px;
+	    	/*text-anchor: middle;*/
+	    	stroke: green;
+	    }
+	    .title {
+	    	font-size: 20px;
+	    	stroke: black;
+	    	font-family: SimSun;
+	    	text-anchor: middle;  /* 文本水平居中 */
+			dominant-baseline: middle; /* 文本垂直居中 */
+	    }
+	    .Axis path,
+		.Axis line {
+			stroke: teal;
+			shape-rendering: crispEdges;
+		}
+		.Axis text {
+			font-family: Optima, Futura, sans-serif;
+			font-weight: bold;
+			font-size: 14px;
+			fill: teal;
+		}
+    </style>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+	<script>
+		// 随机生成大小和个数在一定区间的dataset
+		var dataset = [];
+		const maxRange = Math.random() * 80 + 20,
+			  minRange = Math.random() * 5 + 5;
+		for(let i = 0; i < d3.randomUniform(5, 15)(); i++)
+			dataset.push(d3.randomUniform(minRange, maxRange)() | 0)
+		
+
+	    const w = 580,
+	    	  h = 500,
+	    	  rectMargin = 30,
+	    	  rectWidth = 20
+	    //确保histogram位于SVG图像中心。
+	    const lefter = (w - (dataset.length + 4) * rectMargin ) / 2;  
+	    // const uper = 
+	    const svg = d3.select("body")
+	        .append("svg")
+	        .attr("width", w)
+	        .attr("height", h)
+	        .style("background-color","rgb(224,224,224)");
+
+        /*var firstM = rectMargin * 2 + rectWidth / 2,
+        	lastM = firstM + (dataset.length - 1) * rectMargin;
+	    var xScale = d3.scaleLinear()
+	    			   .domain([0, dataset.length])
+	    			   .range([firstM, lastM])*/
+	    var xScale = d3.scaleLinear()
+	    				// .domain([0, ])
+	    				.range([lefter + rectMargin , lefter + (dataset.length + 4) * rectMargin ])
+
+		var hScale = d3.scaleLinear()
+					   .domain([0, d3.max(dataset)] )
+					   .range([0.83*h, 0.2*h]);
+
+		var Grad = (d3.max(dataset) - d3.min(dataset)) / 4;
+		var colorDomain = [];
+		for(let i = 1; i < 4; i++)
+			colorDomain.push(d3.min(dataset) + Grad * i)
+		console.log(colorDomain)
+		var colorScale = d3.scaleThreshold()
+					    .domain(colorDomain)
+					    .range(["#09F", "#06C", "#00F", "#00C"]);	
+					    
+
+	    svg.selectAll("rect")
+	        .data(dataset)
+	        .enter()
+	        .append("rect")
+	        .attr("x", (d, i) => lefter + (i + 2.5)* rectMargin)
+	        .attr("y", (d, i) =>  hScale(d))
+	        .attr("width", rectWidth)
+	        .attr("height", (d, i) => 0.83*h - hScale(d))
+	        .attr("fill", (d) => colorScale(d) )
+	        .attr('class',"bar")
+	    
+
+	    svg.selectAll("text")
+	        .data(dataset)
+	        .enter()
+	        .append("text")
+	        .text((d) => d)
+	        .attr("x", (d, i) => lefter + (i + 2.5)* rectMargin )
+	        .attr("y", (d, i) => hScale(d) - 3)
+	        .attr('class',"text")
+
+	    svg.append('text').text("知乎历年第一季度封号总数")
+	       .attr("x", w / 2 )
+	       .attr("y", h - 20)
+	       .attr("class",'title')
+
+
+		var xAxis = d3.axisBottom(xScale)
+					  .ticks(0)	
+
+		svg.append("g")
+		   .attr("class", "Axis")
+		   .attr("transform","translate(0," + 0.83*h  + ")")
+		   .call(xAxis)	   
+
+		var yAxis = d3.axisLeft(hScale)
+					  .ticks(10);
+		svg.append("g")
+		   .attr("class", "Axis")
+		   .attr("transform","translate(" + (lefter + rectMargin)  + ",0)")
+		   .call(yAxis)	
+	</script>
+</body>
+
+</html>
