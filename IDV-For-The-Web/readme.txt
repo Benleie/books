@@ -1,3 +1,6 @@
+作者提供的随书代码：https://github.com/alignedleft/d3-book
+
+
 08 ScatterPlot-click-toggle 
 		- 自己结合click事件，让每个circle的text被点击后实现toggle效果，页面更为简洁。。
 		- 每个circle都有独立的toggle下效果.  (lock)
@@ -18,4 +21,4 @@
 
 
 
-FCC d3部分 基本Bar和scatterPlot的制作
+FCC d3部分 Bar和scatterPlot的基本制作
