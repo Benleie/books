@@ -1,0 +1,124 @@
+<!--
+    *创建BFC，解决浮动环绕和浮动塌陷问题
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float</title>
+    <style>
+        /* 借鉴一段body的样式 */
+        body {
+            /* padding: 20px; */
+            margin: 0 auto;
+            background-color: #E2E2E2;
+            max-width: 1024px;
+            color: #595B66;
+            font-family: 'Microsoft Yahei', sans-serif;
+        }
+        div,p,button {
+            padding: 0;
+            margin: 0;
+        }
+        p.toggle{
+            float:left;
+            border:medium solid black;
+            width:30%;
+            margin:2px;
+            padding:2px;
+        }
+        p{
+            border: medium solid yellow;
+        }
+        .task1 p{
+            /* 创建BFC，解决浮动环绕，形成三列自适应布局 */
+            overflow: hidden;
+        }
+        .inline {
+            /* inline-flex亦可,上下对齐样式略有不同 */
+            display:inline-block;
+            width:30%;
+        }
+        .task {
+            border:thin solid gray;
+            margin-top: 20px;
+        }
+        .list-item {
+            display: list-item;
+            width: 30%;
+        }
+
+        .box {
+            background-color: white;
+            border: thin solid gray;
+            margin: 50px 0 55px;
+            /* 创建BFC，避免因float引起的父元素的高度塌陷 */
+            overflow:hidden;
+        }
+        
+        .box-item {
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            vertical-align: middle;
+            margin: 5px;
+            background-color: #ffd200;
+            font-size: 100px;
+            color: white;
+            text-align: center;
+        }
+        .box-1 .box-item{
+            /* float */
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="task task1">
+        <p class="toggle">五百多种水果,just loved by many cougars and they all love it.just loved by many cougars and they all love it. just loved by many cougars and they all love it. </p>
+        <p class="toggle">五百多种蔬菜,we all love it. It makes us feel better.just loved by many cougars and they all love it</p>
+        <p>旅行是一件非常有意思的事情,we all love it. It makes us feel better.we all love it. It makes us feel better.just loved by many cougars and they all love it. just loved by many cougars and they all love it. just loved by many cougars and they all love it</p>
+        <p>
+            <button>Left</button>
+            <button>right</button>
+            <button>NONE</button>
+        </p>
+    </div>
+
+    <div class="task task2">
+        <p class="inline">五百多种水果,just loved by many cougars and they all love it.just loved by many cougars and they all love it. just loved by many cougars and they all love it. </p>
+        <p class="inline">五百多种蔬菜,we all love it. It makes us feel better.just loved by many cougars and they all love it</p>
+        <p class="inline">旅行是一件非常有意思的事情,we all love it. It makes us feel better.we all love it. It makes us feel better.just loved by many cougars and they all love it. just loved by many cougars and they all love it. just loved by many cougars and they all love it</p>
+    </div>
+
+    <div class="box box-1">
+		<div class="box-item">1</div>
+		<div class="box-item">2</div>
+		<div class="box-item">3</div>
+		<div class="box-item">4</div>
+	</div>
+    
+    <div class="task task3">
+        <p class="list-item">五百多种水果,just loved by many cougars and they all love it.just loved by many cougars and they all love it. just loved by many cougars and they all love it. </p>
+        <p class="list-item">五百多种蔬菜,we all love it. It makes us feel better.just loved by many cougars and they all love it</p>
+        <p class="list-item">旅行是一件非常有意思的事情,we all love it. It makes us feel better.we all love it. It makes us feel better.just loved by many cougars and they all love it. just loved by many cougars and they all love it. just loved by many cougars and they all love it</p>
+    </div>
+
+    
+
+
+    <script>
+        var buttons = document.getElementsByTagName("button");
+        for(var i = 0; i < buttons.length; i++){
+            buttons[i].onclick = function(e){
+                let elements = document.getElementsByClassName('toggle');
+                for(let j = 0; j < elements.length; j++){
+                    console.log(e.target.innerHTML)
+                    elements[j].style.cssFloat = e.target.innerHTML;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
