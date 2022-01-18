@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>target</title>
+</head>
+<body>
+	<div id="event">
+		<button>nothing</button>
+		<div>currentTarget</div>
+		<div>currentTarget</div>
+		<div>currentTarget</div>
+		<div>currentTarget</div>
+		<div>MouseEvent {isTrusted: true, screenX: 207, screenY: 213, clientX: 229, clientY: 122, …}
+				altKey
+				:
+				false
+				bubbles
+				:
+				true
+				button
+				:
+				0
+				buttons
+				:
+				0
+				cancelBubble
+				:
+				false
+				cancelable
+				:
+				true
+				clientX
+				:
+				229
+				clientY
+				:
+				122
+				composed
+				:
+				true
+				ctrlKey
+				:
+				false
+				currentTarget
+				:
+				null
+				defaultPrevented
+				:
+				false
+				detail
+				:
+				1
+				eventPhase
+				:
+				0
+				fromElement
+				:
+				null
+				isTrusted
+				:
+				true
+				layerX
+				:
+				229
+				layerY
+				:
+				122
+				metaKey
+				:
+				false
+				movementX
+				:
+				0
+				movementY
+				:
+				0
+				offsetX
+				:
+				221
+				offsetY
+				:
+				20
+				pageX
+				:
+				229
+				pageY
+				:
+				122
+				path
+				:
+				(6) [div, div#event, body, html, document, Window]
+				relatedTarget
+				:
+				null
+				returnValue
+				:
+				true</div>
+		</div>
+
+	<script type="text/javascript">
+		document.body.addEventListener("click",function(event){
+			console.log(event.currentTarget)
+			console.log(event.target)
+		})
+	</script>
+</body>
+</html>
