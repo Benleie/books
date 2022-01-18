@@ -1,4 +1,10 @@
 读书笔记。日更,是不可能的:D
+## 提交规范
++ http
++ Node.js
++ Javascript
++ css
++ browser
 
 ## 经典书籍
 + [You Dont Kwow JS](https://github.com/getify/You-Dont-Know-JS/tree/1st-ed)  [笔记]()
